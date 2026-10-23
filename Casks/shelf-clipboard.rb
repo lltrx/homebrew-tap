@@ -1,6 +1,6 @@
 cask "shelf-clipboard" do
-  version "1.4.1"
-  sha256 "f250e8d484f024c279ede31ecbc258563dbef4f39a1c68c66581de9faa5e7b5b"
+  version "1.5.0"
+  sha256 "d13ebdbaaa027ec8bc9453ec8300d5c097b7343181ab4c6facfa3c9fed5c5d4b"
 
   url "https://github.com/lltrx/shelf-clipboard/releases/download/v#{version}/Shelf-#{version}.zip"
   name "Shelf"
