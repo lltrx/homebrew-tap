@@ -18,19 +18,25 @@ cask "shelf-clipboard@beta" do
 
   app "Shelf.app"
 
+  # Quit the running Shelf first; otherwise the old version keeps running after an upgrade.
+  uninstall quit: "com.turkifaisal.shelf"
+
   zap trash: [
     "~/Library/Application Support/Shelf",
     "~/Library/Preferences/com.turkifaisal.shelf.plist",
   ]
 
   caveats <<~EOS
-    Beta builds aren't notarized by Apple. The first time you open this version, macOS
-    blocks it: click Done, then System Settings → Privacy & Security → Open Anyway.
+    Beta builds aren't notarized by Apple, so macOS blocks each new beta the first time it
+    opens. Click Done (not Move to Trash), then System Settings → Privacy & Security →
+    Open Anyway. Or, since you trust this build:
+      xattr -dr com.apple.quarantine /Applications/Shelf.app && open /Applications/Shelf.app
 
-    macOS also asks for Accessibility again (Shelf needs it to paste). In System Settings →
+    macOS may ask for Accessibility again (Shelf needs it to paste). In System Settings →
     Privacy & Security → Accessibility, select Shelf, click −, then paste once and allow it.
 
-    Your history and pinboards are kept. To go back to the stable version:
+    The Shelf menu (⋯ in the shelf) shows the version at the bottom. History and pinboards
+    are kept. To go back to the stable version:
       brew uninstall --cask shelf-clipboard@beta
       brew install --cask lltrx/tap/shelf-clipboard
   EOS
